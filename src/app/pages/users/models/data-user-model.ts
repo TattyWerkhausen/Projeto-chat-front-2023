@@ -5,7 +5,9 @@ export class DataUserModel{
   ){}
 }
 
-export interface IDataUserModel{
-  name: string,
-  email:string
+export class IDataUserModel{
+  constructor(
+  public name: string,
+  public email:string
+  ){}
 }
