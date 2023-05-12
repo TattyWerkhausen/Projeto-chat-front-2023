@@ -25,6 +25,7 @@ export class UpdateUserComponent implements OnInit {
       email: _formBuilder.control('')
     })
     this.userId = _activedRouter.snapshot.params['id'];
+
     this._userService.getUserById(this.userId).subscribe({
       next:(result) => {this.user = result
       this._fillOutForm();
@@ -43,9 +44,9 @@ export class UpdateUserComponent implements OnInit {
     const email = this.form.controls['email'].value;
 
     const newDataUser = new IDataUserModel(
-      name, email
+      this.userId, name, email
     );
-    this._userService.updateUser(this.userId, newDataUser).subscribe({
+    this._userService.updateUser(newDataUser).subscribe({
       next:() => this._router.navigateByUrl('/users')
     })
   }

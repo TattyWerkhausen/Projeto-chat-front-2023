@@ -7,6 +7,7 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { SeeUsersComponent } from './see-users/see-users.component';
+import { RemoveUserComponent } from './remove-user/remove-user.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { SeeUsersComponent } from './see-users/see-users.component';
     AddUserComponent,
     UsersComponent,
     UpdateUserComponent,
-    SeeUsersComponent
+    SeeUsersComponent,
+    RemoveUserComponent
   ],
   imports: [
     CommonModule,

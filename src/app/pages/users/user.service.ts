@@ -20,9 +20,14 @@ export class UserService {
   }
   searchUsers(name: string): Observable<ISearchAllUsersModel[]> {
     const params = new HttpParams().set('name', name);
-    return this.httpClient.get<ISearchAllUsersModel[]>(this.api + 'users/', { params,});
+    return this.httpClient.get<ISearchAllUsersModel[]>(this.api + 'users', {
+      params,
+    });
   }
-  updateUser(userId:string, userModel:IDataUserModel):Observable<any>{
-    return this.httpClient.put<any>(this.api + 'update' + userId, userModel);
- }
+  updateUser(userModel: IDataUserModel): Observable<any> {
+    return this.httpClient.put<any>(this.api, userModel);
+  }
+  deleteUser(id: string): Observable<any> {
+    return this.httpClient.delete<any>(this.api + id);
+  }
 }
