@@ -9,25 +9,23 @@ import { ISearchAllUsersModel } from './models/i-search-all-users-model';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
   api = 'https://localhost:7237/api/User/';
 
   addUser(user: DataUserModel): Observable<any> {
-    return this.httpClient.post<any>(this.api, user);
+    return this._httpClient.post<any>(this.api, user);
   }
   getUserById(id: string): Observable<IDataUserModel> {
-    return this.httpClient.get<IDataUserModel>(this.api + id);
+    return this._httpClient.get<IDataUserModel>(this.api + id);
   }
-  searchUsers(name: string): Observable<ISearchAllUsersModel[]> {
-    const params = new HttpParams().set('name', name);
-    return this.httpClient.get<ISearchAllUsersModel[]>(this.api + 'users', {
-      params,
-    });
+  searchUsers = (params: any): Observable<ISearchAllUsersModel[]> => {
+    //const params = new HttpParams().set('name', name);
+    return this._httpClient.get<ISearchAllUsersModel[]>(this.api + 'users', {params});
   }
   updateUser(userModel: IDataUserModel): Observable<any> {
-    return this.httpClient.put<any>(this.api, userModel);
+    return this._httpClient.put<any>(this.api, userModel);
   }
   deleteUser(id: string): Observable<any> {
-    return this.httpClient.delete<any>(this.api + id);
+    return this._httpClient.delete<any>(this.api + id);
   }
 }

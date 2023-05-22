@@ -1,6 +1,21 @@
-<div *ngFor="let user of users">
-  <h1>{{ user.name }}</h1>
-  <p>{{ user.email }}</p>
- <button><a [routerLink]="['/users/', user.id, 'update-user']">Editar</a></button>
- <button><a [routerLink]="['/users/', user.id, 'delete']">Deletar</a></button>
+<div class="container">
+  <form [formGroup]="form">
+    <div>
+      <input type="text" formControlName="name" placeholder="Pesquisar" />
+      <button (click)="searchUsers()">Buscar</button>
+    </div>
+    <div *ngFor="let user of users">
+      <div *ngIf="!user">Não encontrado</div>
+      <div *ngIf="user">
+        <h1>{{ user.name }}</h1>
+        <p>{{ user.email }}</p>
+      </div>
+      <button>
+        <a [routerLink]="['/users/', user.id, 'update-user']">Editar</a>
+      </button>
+      <button>
+        <a [routerLink]="['/users/', user.id, 'delete']">Deletar</a>
+      </button>
+    </div>
+  </form>
 </div>

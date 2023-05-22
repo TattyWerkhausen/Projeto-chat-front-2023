@@ -42,9 +42,10 @@ export class UpdateUserComponent implements OnInit {
   updateUser():void{
     const name = this.form.controls['name'].value;
     const email = this.form.controls['email'].value;
+    const password = this.form.controls['password'].value;
 
     const newDataUser = new IDataUserModel(
-      this.userId, name, email
+      this.userId, name, email, password
     );
     this._userService.updateUser(newDataUser).subscribe({
       next:() => this._router.navigateByUrl('/users')
