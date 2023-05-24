@@ -8,21 +8,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { SeeUsersComponent } from './see-users/see-users.component';
 import { RemoveUserComponent } from './remove-user/remove-user.component';
+import { LoginComponent } from '../login/login.component';
 
 
 @NgModule({
   declarations: [
-    AddUserComponent,
     UsersComponent,
+    AddUserComponent,
     UpdateUserComponent,
     SeeUsersComponent,
-    RemoveUserComponent
+    RemoveUserComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
     ReactiveFormsModule,
     FormsModule
+  ],
+  exports:[
   ]
 })
 export class UsersModule { }

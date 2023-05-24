@@ -34,7 +34,9 @@ export class LoginComponent implements OnInit {
     this.user = this.form.value as ILogin;
     this._loginService.login(this.user).subscribe({
       next: () => {
-        this._router.navigateByUrl('/users');
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+        this._router.navigateByUrl('/home');
       },
       error: () => {
         this.showErrorMessage = true;
