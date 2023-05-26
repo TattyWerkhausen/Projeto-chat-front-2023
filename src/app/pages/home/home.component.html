@@ -4,7 +4,7 @@
   </div>
   <div *ngIf="isLoggedIn">
     <div>Bem Vindo(a)</div>
-    <div><a [routerLink]="'/users'">Iniciar</a></div>
+    <div><button [routerLink]="'/users/see-users'">Iniciar</button></div>
     <div><button (click)="logout()">Logout</button></div>
   </div>
 </div>
