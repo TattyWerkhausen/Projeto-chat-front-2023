@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IDataUserModel } from '../users/models/data-user-model';
 import { Router } from '@angular/router';
 import { ILogin } from './i-login';
 
@@ -15,11 +14,13 @@ export class LoginComponent implements OnInit {
   errorMessage = 'Usúario não existente';
   showErrorMessage = false;
 
+
   constructor(
     private _loginService: LoginService,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
   ) {
+
     this.form = _formBuilder.group({
       email: _formBuilder.control(''),
       password: _formBuilder.control(''),
@@ -33,7 +34,9 @@ export class LoginComponent implements OnInit {
 
     this.user = this.form.value as ILogin;
     this._loginService.login(this.user).subscribe({
-      next: () => {
+      next: (apiResult) => {
+        this._loginService.loggedUserId = apiResult.id;
+
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         this._router.navigateByUrl('/home');

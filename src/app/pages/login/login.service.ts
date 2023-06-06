@@ -10,8 +10,9 @@ import { ILogin } from './i-login';
 export class LoginService {
   constructor(private _httpClient: HttpClient) {}
   api = 'https://localhost:7237/api/Login/';
+  loggedUserId?: string;
 
-  login(user:ILogin): Observable<unknown> {
-    return this._httpClient.post<unknown>(this.api, user);
+  login(user:ILogin): Observable<any> {
+    return this._httpClient.post<any>(this.api, user);
   }
 }
