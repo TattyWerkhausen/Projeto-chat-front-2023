@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { ISearchAllUsersModel } from '../models/i-search-all-users-model';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-see-users',
@@ -19,7 +20,8 @@ export class SeeUsersComponent implements OnInit {
     private _activedRouter: ActivatedRoute,
     private _userService: UserService,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _loginService:LoginService
   ) {
     this.form = _formBuilder.group({
       name: _formBuilder.control(''),
@@ -43,5 +45,8 @@ export class SeeUsersComponent implements OnInit {
   }
   openConvertation(): void {
     this._router.navigateByUrl('/messages/send/' + this.idUserReceiveMessage);
+  }
+  register():void{
+    this._loginService.showRegister = true;
   }
 }

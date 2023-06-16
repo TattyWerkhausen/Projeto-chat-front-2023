@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ILogin } from './i-login';
 
 @Component({
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -14,13 +15,11 @@ export class LoginComponent implements OnInit {
   errorMessage = 'Usúario não existente';
   showErrorMessage = false;
 
-
   constructor(
     private _loginService: LoginService,
     private _formBuilder: FormBuilder,
-    private _router: Router,
+    private _router: Router
   ) {
-
     this.form = _formBuilder.group({
       email: _formBuilder.control(''),
       password: _formBuilder.control(''),
@@ -35,8 +34,7 @@ export class LoginComponent implements OnInit {
     this.user = this.form.value as ILogin;
     this._loginService.login(this.user).subscribe({
       next: (apiResult) => {
-        this._loginService.loggedUserId = apiResult.id;
-
+        this._loginService.saveResult(apiResult.id);
         localStorage.setItem('email', email);
         localStorage.setItem('password', password);
         this._router.navigateByUrl('/home');
@@ -45,5 +43,8 @@ export class LoginComponent implements OnInit {
         this.showErrorMessage = true;
       },
     });
+  }
+  register(): void {
+    this._loginService.showRegister = true;
   }
 }

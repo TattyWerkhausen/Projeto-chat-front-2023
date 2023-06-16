@@ -22,7 +22,6 @@ export class UpdateUserComponent implements OnInit {
   ) {
     this.form = _formBuilder.group({
       name: _formBuilder.control(''),
-      email: _formBuilder.control('')
     })
     this.userId = _activedRouter.snapshot.params['id'];
 
@@ -34,18 +33,14 @@ export class UpdateUserComponent implements OnInit {
   }
   private _fillOutForm() {
    this.form.controls['name'].setValue(this.user.name);
-   this.form.controls['email'].setValue(this.user.email);
   }
 
   ngOnInit(): void {}
 
   updateUser():void{
     const name = this.form.controls['name'].value;
-    const email = this.form.controls['email'].value;
-    const password = this.form.controls['password'].value;
-
     const newDataUser = new IDataUserModel(
-      this.userId, name, email, password
+      this.userId, name
     );
     this._userService.updateUser(newDataUser).subscribe({
       next:() => this._router.navigateByUrl('/users')

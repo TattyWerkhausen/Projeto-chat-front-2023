@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-users',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _loginService:LoginService) { }
 
   ngOnInit(): void {
   }
-
+  register():void{
+    this._loginService.showRegister = true;
+  }
 }

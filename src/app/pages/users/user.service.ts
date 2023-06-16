@@ -9,6 +9,7 @@ import { ISearchAllUsersModel } from './models/i-search-all-users-model';
   providedIn: 'root',
 })
 export class UserService {
+
   constructor(private _httpClient: HttpClient) {}
   api = 'https://localhost:7237/api/User/';
 

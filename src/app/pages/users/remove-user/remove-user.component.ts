@@ -26,10 +26,10 @@ export class RemoveUserComponent implements OnInit {
   ngOnInit(): void {}
   deleteUser():void{
     this._userService.deleteUser(this.userId).subscribe({
-      next:()=> this._router.navigateByUrl('/users')
+      next:()=> this._router.navigateByUrl('/users/see-users')
     });
   }
   noDelete():void{
-    this._router.navigateByUrl('/users');
+    this._router.navigateByUrl('/users/see-users');
   }
 }

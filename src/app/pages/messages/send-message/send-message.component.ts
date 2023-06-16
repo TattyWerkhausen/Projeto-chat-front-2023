@@ -4,6 +4,7 @@ import { MessageService } from '../message.service';
 import { DataMessageModel } from '../models/DataMessageModel';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../login/login.service';
+import { IDataUserModel } from '../../users/models/data-user-model';
 
 @Component({
   selector: 'app-send-message',
@@ -13,7 +14,7 @@ import { LoginService } from '../../login/login.service';
 export class SendMessageComponent implements OnInit {
   form!: FormGroup;
   messages: DataMessageModel[] = [];
-  loggedUserId?: string;
+  idUserSend?: string;
   idUserReceiveMessage?: string;
 
   constructor(
@@ -22,20 +23,23 @@ export class SendMessageComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _activedRota: ActivatedRoute
   ) {
-    this.idUserReceiveMessage = _activedRota.snapshot.params['idUserReceive'];
+    this.idUserReceiveMessage = _activedRota.snapshot.params['id'];
     console.log(this.idUserReceiveMessage);
+
     this.form = _formBuilder.group({
       content: _formBuilder.control(''),
     });
   }
 
   ngOnInit() {
-    this.loggedUserId = this._loginService.loggedUserId;
-    console.log(this.loggedUserId)
   }
   send(): void {
+    this.idUserSend = this._loginService.loggedUser;
+    console.log('user send')
+    console.log(this._loginService.loggedUser)
+
     var message = new DataMessageModel(
-      this.loggedUserId!,
+      this.idUserSend!,
       this.idUserReceiveMessage!,
       this.form.controls['content'].value
     );

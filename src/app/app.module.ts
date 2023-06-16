@@ -5,12 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
-import { SendMessageComponent } from './pages/messages/send-message/send-message.component';
+import { LoginComponent } from './pages/login/login.component';
+import { AddUserComponent } from './pages/users/add-user/add-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule,

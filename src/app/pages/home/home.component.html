@@ -1,10 +1,8 @@
 <div class="container">
-  <div *ngIf="!isLoggedIn">
-    <button [routerLink]="'/login'">Logar-se</button>
-  </div>
-  <div *ngIf="isLoggedIn">
+  <div>
     <div>Bem Vindo(a)</div>
     <div><button [routerLink]="'/users/see-users'">Iniciar</button></div>
+    <div><button (click)="register()">add novo</button></div>
     <div><button (click)="logout()">Logout</button></div>
   </div>
 </div>
