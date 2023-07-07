@@ -13,4 +13,7 @@ export class MessageService {
   send(data: DataMessageModel): Observable<any> {
     return this._httpClient.post<any>(this.api, data);
   }
+  allMessages(userSend: string, userReceive: string): Observable<any> {
+    return this._httpClient.get<any>(this.api + userSend +  '/' + userReceive);
+  }
 }

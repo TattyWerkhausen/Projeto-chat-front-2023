@@ -1,6 +1,34 @@
-<div>
-  <form [formGroup]="form">
-    <input type="text" formControlName="content" />
-  </form>
-  <button class="btn-registrar" (click)="send()">Enviar</button>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let message of messages">
+      <div class="col-6">
+        <p
+          (click)="openOptions(message)"
+          class="box-send"
+          [class.message-send]="isMyMessage(message)"
+          [class.message-receive]="!isMyMessage(message)"
+        >
+          {{ message.content }}
+        </p>
+      </div>
+
+      <div>
+        <div *ngIf="isOpen(message)" class="box-options">
+          <p>Edit</p>
+          <p>Delete</p>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="form">
+      <textarea class="break-line-input"
+        [class.message-null]="messageIsNull"
+        type="text"
+        name="content"
+        formControlName="content"
+        (click)="stopAlert()"
+      ></textarea>
+      <button class="btn-register" (click)="send()">Enviar</button>
+    </form>
+  </div>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../message.service';
 import { DataMessageModel } from '../models/DataMessageModel';
 import { ActivatedRoute } from '@angular/router';
@@ -16,6 +16,9 @@ export class SendMessageComponent implements OnInit {
   messages: DataMessageModel[] = [];
   idUserSend?: string;
   idUserReceiveMessage?: string;
+  open = false;
+  messageIsNull = false;
+  messagesOpen: DataMessageModel[] = [];
 
   constructor(
     private _messageService: MessageService,
@@ -24,29 +27,68 @@ export class SendMessageComponent implements OnInit {
     private _activedRota: ActivatedRoute
   ) {
     this.idUserReceiveMessage = _activedRota.snapshot.params['id'];
-    console.log(this.idUserReceiveMessage);
 
     this.form = _formBuilder.group({
-      content: _formBuilder.control(''),
+      content: _formBuilder.control('', Validators.required),
     });
   }
 
   ngOnInit() {
+    this.messagesSee();
+    // setInterval(() => {
+    //   this.messagesSee();
+    // }, 3000);
   }
   send(): void {
     this.idUserSend = this._loginService.loggedUser;
-    console.log('user send')
-    console.log(this._loginService.loggedUser)
 
     var message = new DataMessageModel(
+      '',
       this.idUserSend!,
       this.idUserReceiveMessage!,
       this.form.controls['content'].value
     );
 
+    if (!this.isValidation()) {
+      this.messageIsNull = true;
+      return;
+    }
     this._messageService.send(message).subscribe({
       next: (result) => (this.messages = result),
     });
     this.form.reset();
+  }
+  isValidation(): boolean {
+    return this.form.get('content')!.valid;
+  }
+  messagesSee(): void {
+    this.idUserSend = this._loginService.loggedUser;
+    this._messageService
+      .allMessages(this.idUserSend!, this.idUserReceiveMessage!)
+      .subscribe({
+        next: (result) => (this.messages = result),
+      });
+  }
+  isMyMessage(message: DataMessageModel): boolean {
+    if (this.idUserSend === message.idUserSend) return true;
+    return false;
+  }
+  stopAlert(): void {
+    this.messageIsNull = false;
+  }
+  openOptions(message: DataMessageModel): void {
+    if (this.isOpen(message))
+      this.messagesOpen = this.messagesOpen.filter(
+        (itemMessageOpen) => itemMessageOpen.id !== message.id
+      );
+    else this.messagesOpen.push(message);
+  }
+
+  isOpen(message: DataMessageModel): boolean {
+    for (let index = 0; index < this.messagesOpen.length; index++) {
+      const itemMessageOpen = this.messagesOpen[index];
+      if (itemMessageOpen.id === message.id) return true;
+    }
+    return false;
   }
 }

@@ -4,6 +4,7 @@
       <input type="text" formControlName="name" placeholder="Pesquisar" />
       <button (click)="searchUsers()">Buscar</button>
     </div>
+    <p>Bem vindo(a) {{ userName}}</p>
     <br />
     <div><button (click)="register()">add novo</button></div>
     <div *ngFor="let user of users">

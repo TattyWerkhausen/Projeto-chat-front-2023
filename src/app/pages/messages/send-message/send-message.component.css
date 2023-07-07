@@ -1,0 +1,34 @@
+.btn-register{
+  position: absolute;
+    height: 37px;
+}.box-send{
+  border: 1px black solid;
+  max-width: 240px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.message-receive{
+  background-color: rgb(110, 110, 124);
+}
+.message-send{
+  background-color: rgb(135, 135, 150);
+  color: blue;
+  word-break: break-word;
+}
+@keyframes piscar {
+  0% { border:1px solid red; }
+  50% { border: transparent; }
+  100% { border:1px solid red; }
+}
+.message-null{
+  border: 1px solid red;
+  animation: piscar 1s infinite;
+}
+.box-options{
+  background-color: #a19c9cad;
+  width: 180px;
+  height: 53px;
+  margin-left: 173px;
+  opacity: 0.5;
+}

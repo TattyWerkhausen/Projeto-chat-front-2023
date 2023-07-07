@@ -11,11 +11,11 @@ import { FormGroup } from '@angular/forms';
 export class LoginService {
   saveResult(id: string) {
     this.loggedUser = id;
-    console.log(this.loggedUser);
   }
   constructor(private _httpClient: HttpClient, private _router: Router) {}
   api = 'https://localhost:7237/api/Login/';
   loggedUser?: string;
+  userEmail?:string;
   form!: FormGroup;
   user!: ILogin;
   errorMessage = 'Usúario não existente';
@@ -40,8 +40,8 @@ export class LoginService {
       this.login(this.user).subscribe({
         next: (apiResult) => {
           this.isLoggedIn = true;
-          console.log(apiResult);
           this.saveResult(apiResult.id);
+          this.userEmail = apiResult.email;
         },
       });
   }
