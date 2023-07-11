@@ -19,7 +19,7 @@ export class RemoveUserComponent implements OnInit {
   ) {
     this.userId = _activedRouter.snapshot.params['id'];
     _userService.getUserById(this.userId).subscribe({
-      next: (result) => {this.user = result, console.log(result)}
+      next: (result) => {this.user = result}
     });
   }
 

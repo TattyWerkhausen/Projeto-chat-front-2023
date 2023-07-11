@@ -14,8 +14,8 @@
 
       <div>
         <div *ngIf="isOpen(message)" class="box-options">
-          <p>Edit</p>
-          <p>Delete</p>
+          <p *ngIf="isMyMessage(message)"> <a class="link-edit" [routerLink]="['/messages/', message.id, 'edit', message.idUserReceive]">Editar</a></p>
+          <p><a class="link-edit" [routerLink]="['/messages/', message.id, 'delete',message.idUserReceive, message.idUserSend]">Excluir</a></p>
         </div>
       </div>
     </div>

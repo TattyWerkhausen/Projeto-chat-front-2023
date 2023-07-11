@@ -27,12 +27,15 @@ export class UpdateUserComponent implements OnInit {
 
     this._userService.getUserById(this.userId).subscribe({
       next:(result) => {this.user = result
+        console.log('teste '+ this.form.controls['name'].setValue(this.user.name))
       this._fillOutForm();
+      console.log('teste '+ this.form.controls['name'].setValue(this.user.name))
       }
     });
   }
   private _fillOutForm() {
    this.form.controls['name'].setValue(this.user.name);
+   console.log('teste '+ this.form.controls['name'].setValue(this.user.name))
   }
 
   ngOnInit(): void {}

@@ -1,3 +1,13 @@
-<p>
-  edit-message works!
-</p>
+<div>
+  <form [formGroup]="form">
+    <table class="table table-bordered">
+      <tr>
+        <th>Message:</th>
+        <td>
+          <textarea type="text" name="content" formControlName="content" ></textarea>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <button class="btn-registrar" (click)="editMessage()">Salvar</button>
+</div>

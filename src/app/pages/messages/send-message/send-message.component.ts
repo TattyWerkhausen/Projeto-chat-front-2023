@@ -35,9 +35,9 @@ export class SendMessageComponent implements OnInit {
 
   ngOnInit() {
     this.messagesSee();
-    // setInterval(() => {
-    //   this.messagesSee();
-    // }, 3000);
+    setInterval(() => {
+      this.messagesSee();
+    }, 3000);
   }
   send(): void {
     this.idUserSend = this._loginService.loggedUser;
@@ -85,6 +85,7 @@ export class SendMessageComponent implements OnInit {
   }
 
   isOpen(message: DataMessageModel): boolean {
+    if(this.idUserSend === this._loginService.loggedUser)
     for (let index = 0; index < this.messagesOpen.length; index++) {
       const itemMessageOpen = this.messagesOpen[index];
       if (itemMessageOpen.id === message.id) return true;
