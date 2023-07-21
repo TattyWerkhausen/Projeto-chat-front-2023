@@ -6,7 +6,7 @@ import { ExcluirMessageComponent } from './excluir-message/excluir-message.compo
 
 const routes: Routes = [
   { path: 'send/:id', component: SendMessageComponent },
-  { path: ':id/edit/:idUserReceive', component: EditMessageComponent },
+  { path: ':id/edit/:idUserReceive/:idUserSend', component: EditMessageComponent },
   { path: ':id/delete/:idUserReceive/:idUserSend', component: ExcluirMessageComponent },
 ];
 @NgModule({

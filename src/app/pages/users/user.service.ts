@@ -1,6 +1,5 @@
 import { DataUserModel, IDataUserModel } from './models/data-user-model';
-
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ISearchAllUsersModel } from './models/i-search-all-users-model';
@@ -20,7 +19,6 @@ export class UserService {
     return this._httpClient.get<IDataUserModel>(this.api + id);
   }
   searchUsers = (params: any): Observable<ISearchAllUsersModel[]> => {
-    //const params = new HttpParams().set('name', name);
     return this._httpClient.get<ISearchAllUsersModel[]>(this.api + 'users', {params});
   }
   updateUser(userModel: IDataUserModel): Observable<any> {

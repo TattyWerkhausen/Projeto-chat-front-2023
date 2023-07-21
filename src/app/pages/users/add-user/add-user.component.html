@@ -5,7 +5,9 @@
         <th>Nome:</th>
         <td>
           <input type="text" name="name" formControlName="name" />
-          <span *ngIf="isValidation('name')"> Erro!!! Campo não preenchido! </span>
+          <span *ngIf="isValidation('name')">
+            Erro!!! Campo não preenchido!
+          </span>
         </td>
       </tr>
 
@@ -13,7 +15,9 @@
         <th>Email:</th>
         <td>
           <input type="text" formControlName="email" />
-          <span *ngIf="isValidation('email')"> Erro!!! Campo não preenchido ou invalido! </span>
+          <span *ngIf="isValidation('email')">
+            Erro!!! Campo não preenchido ou invalido!
+          </span>
         </td>
       </tr>
 
@@ -21,7 +25,9 @@
         <th>Password:</th>
         <td>
           <input type="text" formControlName="password" />
-          <span *ngIf="isValidation('password')"> Erro!!! Campo não preenchido! </span>
+          <span *ngIf="isValidation('password')">
+            Erro!!! Campo não preenchido!
+          </span>
         </td>
       </tr>
     </table>

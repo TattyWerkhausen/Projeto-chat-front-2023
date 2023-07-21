@@ -1,9 +1,9 @@
-<div *ngIf="ifLoggedIn() && !ifRegister()">
+<div *ngIf="ifLoggedIn() && !ifNeedOpenRegister()">
   <router-outlet></router-outlet>
 </div>
-<div *ngIf="!ifLoggedIn() && !ifRegister()">
+<div *ngIf="!ifLoggedIn() && !ifNeedOpenRegister()">
   <app-login></app-login>
 </div>
-<div *ngIf="ifRegister()">
+<div *ngIf="ifNeedOpenRegister()">
   <app-add-user></app-add-user>
 </div>

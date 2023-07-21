@@ -4,7 +4,6 @@ import { UserService } from '../user.service';
 import { ISearchAllUsersModel } from '../models/i-search-all-users-model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginService } from '../../login/login.service';
-import { ILogin } from '../../login/i-login';
 
 @Component({
   selector: 'app-see-users',
@@ -17,6 +16,7 @@ export class SeeUsersComponent implements OnInit {
   searchKey: string = '';
   idUserReceiveMessage?: string;
   userName!: string;
+  userLogged?: string;
 
   constructor(
     private _activedRouter: ActivatedRoute,
@@ -31,14 +31,18 @@ export class SeeUsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.searchUsers();
+    this.userLogged = this._loginService.loggedUser;
     this.userName = this._loginService.userEmail!;
+
+    this.searchUsers();
   }
   searchUsers(): void {
     const searchKey = this.form.controls['name'].value;
     this._userService.searchUsers({ name: searchKey }).subscribe({
       next: (result) => {
-        this.users = result;
+        result.forEach((user) => {
+          if (user.id !== this.userLogged) this.users.push(user);
+        });
       },
     });
   }

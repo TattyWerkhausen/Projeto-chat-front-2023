@@ -16,15 +16,15 @@ export class AddUserComponent implements OnInit {
   showErrorMessage = false;
 
   constructor(
-    public userService: UserService,
-    public loginService: LoginService,
-    private formBuilder: FormBuilder,
+    private _userService: UserService,
+    private _loginService: LoginService,
+    private _formBuilder: FormBuilder,
     private _router: Router
   ) {
-    this.form = formBuilder.group({
-      name: formBuilder.control('', Validators.required),
-      email: formBuilder.control('', [Validators.required, Validators.email]),
-      password: formBuilder.control('', Validators.required),
+    this.form = _formBuilder.group({
+      name: _formBuilder.control('', Validators.required),
+      email: _formBuilder.control('', [Validators.required, Validators.email]),
+      password: _formBuilder.control('', Validators.required),
     });
   }
 
@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit {
       this.form.controls['password'].value
     );
 
-    this.userService.addUser(user).subscribe({
+    this._userService.addUser(user).subscribe({
       next: (result) => {
         result = this.success();
       },
@@ -50,13 +50,13 @@ export class AddUserComponent implements OnInit {
   }
 
   success(): void {
-    this.loginService.showRegister = false;
+    this._loginService.showRegister = false;
   }
   error(): void {
     this.showErrorMessage = true;
   }
   cancel(): void {
-    this.loginService.showRegister = false;
+    this._loginService.showRegister = false;
   }
   isValidation(name: string): boolean {
     if (this.form.get(name) === undefined) return true;

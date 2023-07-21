@@ -4,7 +4,7 @@
       <input type="text" formControlName="name" placeholder="Pesquisar" />
       <button (click)="searchUsers()">Buscar</button>
     </div>
-    <p>Bem vindo(a) {{ userName}}</p>
+    <p>Bem vindo(a) {{ userName }}</p>
     <br />
     <div><button (click)="register()">add novo</button></div>
     <div *ngFor="let user of users">
@@ -19,10 +19,7 @@
       <button>
         <a [routerLink]="['/users/', user.id, 'delete']">Deletar</a>
       </button>
-      <button (click)="selectUserForMessage(user.id)">
-        <!-- <a [routerLink]="['/messages/', user.id, 'send']">Mensagem</a> -->
-        message
-      </button>
+      <button (click)="selectUserForMessage(user.id)">message</button>
     </div>
   </form>
 </div>

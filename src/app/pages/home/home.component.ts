@@ -6,13 +6,13 @@ import { LoginService } from '../login/login.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(public loginService: LoginService) {}
+  constructor(private _loginService: LoginService) {}
 
   ngOnInit(): void {}
   logout(): void {
-    this.loginService.logout();
+    this._loginService.logout();
   }
-  register():void{
-    this.loginService.showRegister = true;
+  register(): void {
+    this._loginService.showRegister = true;
   }
 }

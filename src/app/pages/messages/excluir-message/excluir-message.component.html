@@ -1,5 +1,5 @@
 <div class="container">
-  <div>Realmente deseja excluir {{message.content}}?</div>
+  <div>Realmente deseja excluir {{ message?.content }}?</div>
   <button (click)="delete()">Sim</button>
   <button (click)="noDelete()">Não</button>
 </div>

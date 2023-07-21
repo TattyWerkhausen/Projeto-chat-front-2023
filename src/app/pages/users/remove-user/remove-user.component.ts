@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataUserModel, IDataUserModel } from '../models/data-user-model';
+import { IDataUserModel } from '../models/data-user-model';
 
 @Component({
   selector: 'app-remove-user',
@@ -19,17 +19,19 @@ export class RemoveUserComponent implements OnInit {
   ) {
     this.userId = _activedRouter.snapshot.params['id'];
     _userService.getUserById(this.userId).subscribe({
-      next: (result) => {this.user = result}
+      next: (result) => {
+        this.user = result;
+      },
     });
   }
 
   ngOnInit(): void {}
-  deleteUser():void{
+  deleteUser(): void {
     this._userService.deleteUser(this.userId).subscribe({
-      next:()=> this._router.navigateByUrl('/users/see-users')
+      next: () => this._router.navigateByUrl('/users/see-users'),
     });
   }
-  noDelete():void{
+  noDelete(): void {
     this._router.navigateByUrl('/users/see-users');
   }
 }

@@ -3,13 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
-import { AddUserComponent } from './add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { SeeUsersComponent } from './see-users/see-users.component';
 import { RemoveUserComponent } from './remove-user/remove-user.component';
 import { ProfileComponent } from './profile/profile.component';
-
 
 @NgModule({
   declarations: [
@@ -17,7 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
     UpdateUserComponent,
     SeeUsersComponent,
     RemoveUserComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +23,6 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  exports:[
-  ]
+  exports: [],
 })
-export class UsersModule { }
+export class UsersModule {}

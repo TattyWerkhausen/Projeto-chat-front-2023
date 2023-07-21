@@ -1,23 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from '../message.service';
 import { DataMessageModel } from '../models/DataMessageModel';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../login/login.service';
-import { IDataUserModel } from '../../users/models/data-user-model';
 
 @Component({
   selector: 'app-send-message',
   templateUrl: './send-message.component.html',
   styleUrls: ['./send-message.component.css'],
 })
-export class SendMessageComponent implements OnInit {
+export class SendMessageComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   messages: DataMessageModel[] = [];
   idUserSend?: string;
   idUserReceiveMessage?: string;
-  open = false;
   messageIsNull = false;
+  interval: any;
   messagesOpen: DataMessageModel[] = [];
 
   constructor(
@@ -32,10 +31,15 @@ export class SendMessageComponent implements OnInit {
       content: _formBuilder.control('', Validators.required),
     });
   }
+  // interface nativa do angular, implementada para parar requisição na API de messagesSee(), sempre que sair deste component
+  // evitando sobrecarga de trafego da API
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
+  }
 
   ngOnInit() {
     this.messagesSee();
-    setInterval(() => {
+    this.interval = setInterval(() => {
       this.messagesSee();
     }, 3000);
   }
@@ -83,13 +87,12 @@ export class SendMessageComponent implements OnInit {
       );
     else this.messagesOpen.push(message);
   }
-
   isOpen(message: DataMessageModel): boolean {
-    if(this.idUserSend === this._loginService.loggedUser)
-    for (let index = 0; index < this.messagesOpen.length; index++) {
-      const itemMessageOpen = this.messagesOpen[index];
-      if (itemMessageOpen.id === message.id) return true;
-    }
+    if (this.idUserSend === this._loginService.loggedUser)
+      for (let index = 0; index < this.messagesOpen.length; index++) {
+        const itemMessageOpen = this.messagesOpen[index];
+        if (itemMessageOpen.id === message.id) return true;
+      }
     return false;
   }
 }

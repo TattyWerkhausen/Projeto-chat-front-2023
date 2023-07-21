@@ -13,25 +13,19 @@ export class AppComponent {
   logged!: boolean;
 
   constructor(
-    public loginService: LoginService,
-    public userService: UserService,
+    private _loginService: LoginService,
+    private _userService: UserService,
     private _router: Router
   ) {}
 
   ngOnInit(): void {
-    this.loginService.existingLogin();
+    this._loginService.existingLogin();
   }
   ifLoggedIn(): boolean {
-    const emailExistent = localStorage.getItem('email');
-    const passwordExistent = localStorage.getItem('password');
-
-    const emailOk = emailExistent !== null && emailExistent !== undefined;
-    const passwordOk =
-      passwordExistent !== null && passwordExistent !== undefined;
-    if (emailOk && passwordOk) this.logged = true;
+    this.logged = this._loginService.isLoggedIn;
     return this.logged;
   }
-  ifRegister(): boolean {
-    return this.loginService.showRegister;
+  ifNeedOpenRegister(): boolean {
+    return this._loginService.showRegister;
   }
 }
