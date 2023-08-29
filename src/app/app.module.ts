@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AddUserComponent } from './pages/users/add-user/add-user.component';
+import { NotificationsComponent } from './pages/notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { AddUserComponent } from './pages/users/add-user/add-user.component';
     HomeComponent,
     LoginComponent,
     AddUserComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,
